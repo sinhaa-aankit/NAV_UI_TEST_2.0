@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ui_test</string>
+
+    <string name="navigation_guidance_day" translatable="false">http://95.217.212.221:8080/style/style.json</string>
+    <string name="navigation_guidance_night" translatable="false">http://95.217.212.221:8080/style/style.json</string>
+</resources>
