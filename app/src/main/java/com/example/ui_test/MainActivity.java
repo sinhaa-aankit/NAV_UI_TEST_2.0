@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean simulateRoute = true;
+                boolean simulateRoute = false;
 
 
                 //navigationView.retrieveNavigationMapboxMap().retrieveMap().setStyle(new Style.Builder().fromUri("http://95.217.212.221:8080/style/style.json"));
@@ -429,7 +429,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
                 button.setEnabled(true);
-                button.setBackgroundResource(R.color.colorPrimaryDark);
+                button.setBackgroundResource(R.drawable.my_button_enabled);
 
 
             }

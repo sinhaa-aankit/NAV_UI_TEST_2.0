@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">ui_test</string>
+    <string name="app_name">Navigation Keshari</string>
 
     <string name="navigation_guidance_day" translatable="false">http://95.217.212.221:8080/style/style.json</string>
     <string name="navigation_guidance_night" translatable="false">http://95.217.212.221:8080/style/style.json</string>
+    <string name="start_navigation">START</string>
 </resources>
