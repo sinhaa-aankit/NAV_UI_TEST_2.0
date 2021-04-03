@@ -88,79 +88,79 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
         mapview = findViewById(R.id.mapView);
-        //searchView = (SearchView)findViewById(R.id.search);
+        final SearchView searchView = (SearchView) findViewById(R.id.search);
 
         mapview.onCreate(savedInstanceState);
         mapview.getMapAsync(this);
 
-        //searchView.setQueryHint("Seaarch for Places");
+        searchView.setQueryHint("Search for Places");
 
         recentre = (FloatingActionButton)findViewById(R.id.myLocationButton);
 
 
 
 
-        //searchView.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            //public void onClick(View v) {
-               // searchView.setIconified(false); //Make search box active on click
-        //    }
-       // });
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false); //Make search box active on click
+            }
+        });
 
 
 
-        //searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           // @Override
-           // public boolean onQueryTextSubmit(final String s) {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(final String s) {
 
-               // Log.d("Searbox11",s);
+                Log.d("Searbox11",s);
 
-               // MapboxGeocoding mapboxGeocoding1 = MapboxGeocoding.builder()
-                       // .accessToken("pk.eyJ1Ijoic291dmlrc2Fua2FyMjAxMyIsImEiOiJja2Fyc2VrczEwZDM3MnducW1hNm56dzJoIn0.dD4s9wv9UvF4xejzfUW2_Q")
-                        //.query(s)
-                       // .build();
+                MapboxGeocoding mapboxGeocoding1 = MapboxGeocoding.builder()
+                        .accessToken("pk.eyJ1Ijoic291dmlrc2Fua2FyMjAxMyIsImEiOiJja2Fyc2VrczEwZDM3MnducW1hNm56dzJoIn0.dD4s9wv9UvF4xejzfUW2_Q")
+                        .query(s)
+                        .build();
 
-               // mapboxGeocoding1.enqueueCall(new Callback<GeocodingResponse>() {
-                 //   @Override
-                 //   public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
+                mapboxGeocoding1.enqueueCall(new Callback<GeocodingResponse>() {
+                    @Override
+                    public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
 
-                       // List<CarmenFeature> results = response.body().features();
-                       // Point firstResultPoint = results.get(0).center();
-                       // Log.d("Souvik_geo", "onResponse: " + firstResultPoint.toString());
+                        List<CarmenFeature> results = response.body().features();
+                        Point firstResultPoint = results.get(0).center();
+                        Log.d("Souvik_geo", "onResponse: " + firstResultPoint.toString());
 
-                       // mapboxmap.animateCamera(CameraUpdateFactory.newCameraPosition(
-                                //new CameraPosition.Builder()
-                                       // .target(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
-                                       // .zoom(14)
-                                      //  .build()), 4000);
+                        mapboxmap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                                new CameraPosition.Builder()
+                                        .target(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
+                                        .zoom(14)
+                                        .build()), 4000);
 
-                       // mapboxmap.addMarker(new MarkerOptions()
-                              //  .position(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
-                              //  .title(s));
+                        mapboxmap.addMarker(new MarkerOptions()
+                                .position(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
+                                .title(s));
 
-                       // fetchroute(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()));
-
-
+                        fetchroute(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()));
 
 
 
-                    //}
-
-                   // @Override
-                   // public void onFailure(Call<GeocodingResponse> call, Throwable t) {
-
-                  //  }
-               // });
 
 
-               // return false;
-          //  }
+                    }
 
-           // @Override
-           // public boolean onQueryTextChange(String s) {
-               // return false;
-           // }
-      //  });
+                    @Override
+                    public void onFailure(Call<GeocodingResponse> call, Throwable t) {
+
+                    }
+                });
+
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
 
 
 
@@ -191,81 +191,85 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu1, menu);
-
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
-
-        searchView.setQueryHint("Seaarch for Places");
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchView.setIconified(false); //Make search box active on click
-            }
-        });
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(final String query) {
-
-                Log.d("Searbox11",query);
-
-                MapboxGeocoding mapboxGeocoding1 = MapboxGeocoding.builder()
-                        .accessToken("pk.eyJ1Ijoic291dmlrc2Fua2FyMjAxMyIsImEiOiJja2Fyc2VrczEwZDM3MnducW1hNm56dzJoIn0.dD4s9wv9UvF4xejzfUW2_Q")
-                        .query(query)
-                        .build();
-
-                mapboxGeocoding1.enqueueCall(new Callback<GeocodingResponse>() {
-                    @Override
-                    public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
-
-                        List<CarmenFeature> results = response.body().features();
-                        Point firstResultPoint = results.get(0).center();
-                        Log.d("Souvik_geo", "onResponse: " + firstResultPoint.toString());
-
-                        mapboxmap.animateCamera(CameraUpdateFactory.newCameraPosition(
-                                new CameraPosition.Builder()
-                                        .target(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
-                                        .zoom(14)
-                                        .build()), 4000);
-
-                        mapboxmap.addMarker(new MarkerOptions()
-                                .position(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
-                                .title(query));
-
-                        fetchroute(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()));
-
-
-
-
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<GeocodingResponse> call, Throwable t) {
-
-                    }
-                });
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-        return true;
-    }
+//    private SearchView search_view = findViewById(R.id.search);
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu1, menu);
+//
+//        // Associate searchable configuration with the SearchView
+//        SearchManager searchManager =
+//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        final SearchView searchView = (SearchView) findViewById(R.id.search);
+////                (SearchView) menu.findItem(R.id.search).getActionView();
+//
+//        searchView.setSearchableInfo(
+//
+//                searchManager.getSearchableInfo(getComponentName()));
+//
+//        searchView.setQueryHint("Search for Places");
+//        searchView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                searchView.setIconified(false); //Make search box active on click
+//            }
+//        });
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(final String query) {
+//
+//                Log.d("Searbox11",query);
+//
+//                MapboxGeocoding mapboxGeocoding1 = MapboxGeocoding.builder()
+//                        .accessToken("pk.eyJ1Ijoic291dmlrc2Fua2FyMjAxMyIsImEiOiJja2Fyc2VrczEwZDM3MnducW1hNm56dzJoIn0.dD4s9wv9UvF4xejzfUW2_Q")
+//                        .query(query)
+//                        .build();
+//
+//                mapboxGeocoding1.enqueueCall(new Callback<GeocodingResponse>() {
+//                    @Override
+//                    public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
+//
+//                        List<CarmenFeature> results = response.body().features();
+//                        Point firstResultPoint = results.get(0).center();
+//                        Log.d("Souvik_geo", "onResponse: " + firstResultPoint.toString());
+//
+//                        mapboxmap.animateCamera(CameraUpdateFactory.newCameraPosition(
+//                                new CameraPosition.Builder()
+//                                        .target(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
+//                                        .zoom(14)
+//                                        .build()), 4000);
+//
+//                        mapboxmap.addMarker(new MarkerOptions()
+//                                .position(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()))
+//                                .title(query));
+//
+//                        fetchroute(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()));
+//
+//
+//
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<GeocodingResponse> call, Throwable t) {
+//
+//                    }
+//                });
+//
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
+//
+//        return true;
+//    }
 
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {
