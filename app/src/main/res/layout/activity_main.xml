@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
 
     <com.mapbox.mapboxsdk.maps.MapView
@@ -34,11 +38,23 @@
 
     </com.mapbox.mapboxsdk.maps.MapView>
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+        app:navigationIcon="@drawable/ic_baseline_menu_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
     <SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="64dp"
         android:label="@string/app_name"
         android:background="@drawable/search_box"
         app:layout_constraintTop_toTopOf="parent"
@@ -70,3 +86,16 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_menu"
+        >
+
+
+    </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>

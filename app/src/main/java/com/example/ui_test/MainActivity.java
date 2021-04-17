@@ -2,6 +2,7 @@ package com.example.ui_test;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -86,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Mapbox.getInstance(this, "pk.kesari");
 
         setContentView(R.layout.activity_main);
+
+        setUpViews();
 
         mapview = findViewById(R.id.mapView);
         final SearchView searchView = (SearchView) findViewById(R.id.search);
@@ -189,6 +192,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Log.d("Click", "Button Clicked");
             }
         });
+    }
+
+    private void setUpViews() {
+        setUpDrawerLayout();
+    }
+
+    private void setUpDrawerLayout() {
+//        setSupportActionBar();
     }
 
 //    private SearchView search_view = findViewById(R.id.search);
