@@ -21,8 +21,9 @@ public class PermissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
 
-        if(!checkPermission()) askPermission();
-        else sendIntent();
+        if(checkPermission()) sendIntent();
+        else askPermission();
+
 
     }
 

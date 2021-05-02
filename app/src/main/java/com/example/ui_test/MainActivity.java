@@ -1,9 +1,12 @@
 package com.example.ui_test;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.app.SearchManager;
@@ -13,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -81,6 +85,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     FloatingActionButton recentre;
 
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    DrawerLayout drawerLayout;
+//    Toolbar appBar = new Toolbar()
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +98,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         setContentView(R.layout.activity_main);
 
+        // assigning ID of the toolbar to a variable
+        Toolbar toolbar = (Toolbar) findViewById(R.id.appBar);
+
+        // using toolbar as ActionBar
+        setSupportActionBar(toolbar);
+
+        //drawerLayout
+        drawerLayout = (DrawerLayout) findViewById(R.id.mainDrawer);
+
         setUpViews();
+
+//        setNavigationViewListener();
 
         mapview = findViewById(R.id.mapView);
         final SearchView searchView = (SearchView) findViewById(R.id.search);
@@ -194,15 +215,50 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-    private void setUpViews() {
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        // Handle navigation view item clicks here.
+//        switch (item.getItemId()) {
+//
+//            case R.id.mySaves: {
+//                //do somthing
+//                break;
+//            }
+//        }
+//        //close navigation drawer
+//        drawerLayout.closeDrawer(GravityCompat.START);
+//        return true;
+//    }
+//
+//    private void setNavigationViewListener() {
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+//        navigationView.setNavigationItemSelectedListener(this);
+//    }
+
+
+    void setUpViews() {
         setUpDrawerLayout();
     }
 
-    private void setUpDrawerLayout() {
-//        setSupportActionBar();
+
+
+    void setUpDrawerLayout() {
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,
+                R.string.app_name,
+                R.string.app_name);
+        actionBarDrawerToggle.syncState();
     }
 
-//    private SearchView search_view = findViewById(R.id.search);
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //    private SearchView search_view = findViewById(R.id.search);
 //
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -438,8 +494,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     navigationMapRoute = new NavigationMapRoute(null, mapview, mapboxmap, R.style.NavigationMapRoute);
                 }
                 navigationMapRoute.addRoute(route);
-
-
 
 
 

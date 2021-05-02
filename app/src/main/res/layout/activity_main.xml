@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainDrawer"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
@@ -12,49 +13,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_menu_24"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        mapbox:mapbox_cameraZoom="15"
-        mapbox:mapbox_cameraTilt="0" >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        mapbox:mapbox_cameraTilt="0"
+        mapbox:mapbox_cameraZoom="15">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/myLocationButton"
-        android:layout_width="54dp"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="92dp"
-        android:src="@android:drawable/ic_menu_mylocation"
-        app:borderWidth="0dp"
-        app:elevation="6dp"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search"
-        app:pressedTranslationZ="12dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/myLocationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="92dp"
+            android:src="@android:drawable/ic_menu_mylocation"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search"
+            app:pressedTranslationZ="12dp" />
+
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@drawable/search_box"-->
+<!--            app:navigationIcon="@drawable/ic_baseline_menu_24" />-->
 
     </com.mapbox.mapboxsdk.maps.MapView>
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
-        app:navigationIcon="@drawable/ic_baseline_menu_24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
 
     <SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="64dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="56dp"
         android:label="@string/app_name"
         android:background="@drawable/search_box"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,13 +101,14 @@
         mapbox:layout_constraintBottom_toBottomOf="parent"
         mapbox:layout_constraintRight_toRightOf="parent"
         android:drawableLeft="@drawable/ic_baseline_navigation_24"
-        android:padding="16dp"
+        android:padding="12dp"
         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
         android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
