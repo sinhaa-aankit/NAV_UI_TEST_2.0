@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +26,9 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
@@ -53,9 +56,10 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
-import com.mapbox.services.android.navigation.ui.v5.NavigationView;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,7 +70,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, NavigationView.OnNavigationItemSelectedListener {
 
     MapboxMap mapboxmap;
     MapView mapview;
@@ -80,14 +84,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     //SearchView searchView;
 
     private Button button;
-    private NavigationView navigationView;
     Marker mark;
 
     FloatingActionButton recentre;
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
-//    Toolbar appBar = new Toolbar()
+
+    NavigationView navigation_view;
 
 
 
@@ -104,13 +108,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // using toolbar as ActionBar
         setSupportActionBar(toolbar);
 
+        // This will display an Up icon (<-), will replace it later
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //drawerLayout
         drawerLayout = (DrawerLayout) findViewById(R.id.mainDrawer);
 
-        setUpViews();
+        setUpDrawerLayout();
 
-//        setNavigationViewListener();
+        navigation_view = (NavigationView) findViewById(R.id.navigation_view);
+        navigation_view.setNavigationItemSelectedListener(this);
 
+//        navigation_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem item) {
+//                Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
+//                return true;
+//            }
+//        });
+
+
+
+
+        //
         mapview = findViewById(R.id.mapView);
         final SearchView searchView = (SearchView) findViewById(R.id.search);
 
@@ -120,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         searchView.setQueryHint("Search for Places");
 
         recentre = (FloatingActionButton)findViewById(R.id.myLocationButton);
-
 
 
 
@@ -215,39 +234,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        // Handle navigation view item clicks here.
-//        switch (item.getItemId()) {
-//
-//            case R.id.mySaves: {
-//                //do somthing
-//                break;
-//            }
-//        }
-//        //close navigation drawer
-//        drawerLayout.closeDrawer(GravityCompat.START);
-//        return true;
-//    }
-//
-//    private void setNavigationViewListener() {
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
-//        navigationView.setNavigationItemSelectedListener(this);
-//    }
-
-
-    void setUpViews() {
-        setUpDrawerLayout();
-    }
-
-
-
     void setUpDrawerLayout() {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
                 R.string.app_name,
                 R.string.app_name);
         actionBarDrawerToggle.syncState();
+
     }
 
     @Override
@@ -256,6 +249,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.mySaves: {
+                Toast.makeText(this, "Successful", Toast.LENGTH_LONG).show();
+                break;
+            }
+        }
+        //close navigation drawer
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     //    private SearchView search_view = findViewById(R.id.search);
