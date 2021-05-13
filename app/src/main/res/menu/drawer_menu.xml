@@ -1,31 +1,40 @@
+
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/mySaves"
         android:title="@string/my_saves"
         />
     <item
+        android:id="@+id/myApps"
         android:title="@string/apps"
         />
     <item
+        android:id="@+id/ShareMyLocation"
         android:title="@string/share_my_location"
         />
     <item
+        android:id="@+id/getPPin"
         android:title="@string/get_ppin"
         />
     <item
+        android:id="@+id/addPlaces"
         android:title="@string/add_places"
         />
     <item
+        android:id="@+id/settings"
         android:title="@string/settings" />
     <item
+        android:id="@+id/whatsNew"
         android:title="@string/whats_new" />
     <item
+        android:id="@+id/feedback"
         android:title="@string/feedback" />
     <item
+        android:id="@+id/rateUsOnPlayStore"
         android:title="@string/rate_us_on_playstore" />
     <item
+        android:id="@+id/contributions"
         android:title="@string/contributions" />
 </menu>
