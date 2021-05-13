@@ -258,43 +258,43 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (item.getItemId()) {
 
             case R.id.mySaves: {
-                Toast.makeText(this, "Successful", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.myApps: {
-                Toast.makeText(this, "Going to My Apps", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Going to My Apps", Toast.LENGTH_SHORT).show();
                 break;
             }
             case ShareMyLocation: {
-                Toast.makeText(this, "Location Share Successful", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Location Share Successful", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.getPPin: {
-                Toast.makeText(this, "Getting P Pin", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Getting P Pin", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.addPlaces: {
-                Toast.makeText(this, "Adding Place Successful", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Adding Place Successful", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.settings: {
-                Toast.makeText(this, "Opening Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Opening Settings", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.whatsNew: {
-                Toast.makeText(this, "Showing Whats New", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Showing Whats New", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.feedback: {
-                Toast.makeText(this, "Thank you for your Feedback", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Thank you for your Feedback", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.rateUsOnPlayStore: {
-                Toast.makeText(this, "Thank you for rating us", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Thank you for rating us", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.contributions: {
-                Toast.makeText(this, "Showing Contributors", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Showing Contributors", Toast.LENGTH_SHORT).show();
                 break;
             }
         }
