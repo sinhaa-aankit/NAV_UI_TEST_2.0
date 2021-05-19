@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.ui_test.activities.WhatsNew;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -71,6 +72,7 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 import static com.example.ui_test.R.id.ShareMyLocation;
+import static com.example.ui_test.R.id.whatsNew;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -120,16 +122,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         navigation_view = (NavigationView) findViewById(R.id.navigation_view);
         navigation_view.setNavigationItemSelectedListener(this);
-
-//        navigation_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(MenuItem item) {
-//                Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
-//                return true;
-//            }
-//        });
-
-
 
 
         //
@@ -282,7 +274,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 break;
             }
             case R.id.whatsNew: {
-                Toast.makeText(this, "Showing Whats New", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, WhatsNew.class);
+                startActivity(intent);
                 break;
             }
             case R.id.feedback: {
