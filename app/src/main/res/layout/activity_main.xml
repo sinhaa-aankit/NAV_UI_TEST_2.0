@@ -81,8 +81,6 @@
         app:layout_constraintTop_toTopOf="parent"
 
         android:elevation="25dp"
-
-
         />
 
 

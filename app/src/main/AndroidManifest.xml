@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.WhatsNew"></activity>
+        <activity android:name=".activities.Feedback"></activity>
+        <activity android:name=".activities.WhatsNew" />
         <activity android:name=".PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

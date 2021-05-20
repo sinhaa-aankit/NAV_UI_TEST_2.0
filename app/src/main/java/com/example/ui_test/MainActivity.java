@@ -26,11 +26,17 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.ui_test.activities.Feedback;
 import com.example.ui_test.activities.WhatsNew;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.model.ReviewErrorCode;
+import com.google.android.play.core.tasks.Task;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -177,10 +183,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         fetchroute(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()));
 
-
-
-
-
                     }
 
                     @Override
@@ -208,10 +210,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 boolean simulateRoute = false;
-
-
                 //navigationView.retrieveNavigationMapboxMap().retrieveMap().setStyle(new Style.Builder().fromUri("http://95.217.212.221:8080/style/style.json"));
-
 
                 NavigationLauncherOptions options = NavigationLauncherOptions.builder()
                         .directionsRoute(route)
@@ -279,11 +278,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 break;
             }
             case R.id.feedback: {
-                Toast.makeText(this, "Thank you for your Feedback", Toast.LENGTH_SHORT).show();
+                Intent intentFeedback = new Intent(this, Feedback.class);
+                startActivity(intentFeedback);
                 break;
             }
             case R.id.rateUsOnPlayStore: {
-                Toast.makeText(this, "Thank you for rating us", Toast.LENGTH_SHORT).show();
+                final ReviewManager manager = ReviewManagerFactory.create(this);
+                Task<ReviewInfo> request = manager.requestReviewFlow();
+                request.addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Getting the ReviewInfo object
+                        ReviewInfo reviewInfo = task.getResult();
+
+                        Task <Void> flow = manager.launchReviewFlow(this, reviewInfo);
+                        flow.addOnCompleteListener(task1 -> {
+                            Toast.makeText(this, "Thank you for your Feedback", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                });
+
+
+
                 break;
             }
             case R.id.contributions: {
