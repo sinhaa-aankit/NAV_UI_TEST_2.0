@@ -34,5 +34,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="developerimage">DeveloperImage</string>
+    <string name="no_places_saved_yet">No Places Saved Yet</string>
 
 </resources>

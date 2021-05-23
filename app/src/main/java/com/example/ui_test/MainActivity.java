@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.ui_test.activities.ContributionsActivity;
 import com.example.ui_test.activities.Feedback;
+import com.example.ui_test.activities.MySaves;
 import com.example.ui_test.activities.SettingsActivity;
 import com.example.ui_test.activities.WhatsNew;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -171,6 +172,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         fetchroute(new LatLng(firstResultPoint.latitude(),firstResultPoint.longitude()));
 
+//                        MapboxMap.AddOnMapLongClickListener(firstResultPoint.latitude(),firstResultPoint.longitude());
+
                     }
 
                     @Override
@@ -237,7 +240,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (item.getItemId()) {
 
             case R.id.mySaves: {
-                Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
+                Intent intentMySaves = new Intent(this, MySaves.class);
+                startActivity(intentMySaves);
                 break;
             }
             case R.id.myApps: {
@@ -249,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 break;
             }
             case R.id.getPPin: {
-                Toast.makeText(this, "Getting P Pin", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Generating P Pin", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.addPlaces: {
@@ -450,8 +454,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             mapboxMap.removeMarker(mark);
                         }
                         Toast.makeText(MainActivity.this, String.format("User clicked at: %s", point.toString()), Toast.LENGTH_LONG).show();
-
-                        //Log.d("Souvik", String.valueOf(point));
 
                         mark = mapboxmap.addMarker(new MarkerOptions()
                                 .position(point));
