@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
     tools:context=".activities.ContributionsActivity">
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,7 +17,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:contentDescription="@string/developerimage"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"
+        android:layout_margin = "16dp"
+        android:background="@drawable/ic_baseline_person_24"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -24,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Contributer Name Here."
         android:textAlignment="center"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -39,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="Contributer Email Here."
         android:textAlignment="center"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -53,7 +56,7 @@
         android:layout_height="wrap_content"
         android:text="Contributer LinkedIn Here."
         android:textAlignment="center"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"

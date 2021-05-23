@@ -190,6 +190,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onQueryTextChange(String s) {
                 return false;
             }
+
+
         });
 
 
