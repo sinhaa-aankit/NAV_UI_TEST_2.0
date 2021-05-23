@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.Feedback"></activity>
+        <activity android:name=".activities.ContributionsActivity"></activity>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".activities.Feedback" />
         <activity android:name=".activities.WhatsNew" />
         <activity android:name=".PermissionActivity">
             <intent-filter>

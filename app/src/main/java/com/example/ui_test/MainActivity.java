@@ -9,39 +9,32 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.ui_test.activities.ContributionsActivity;
 import com.example.ui_test.activities.Feedback;
+import com.example.ui_test.activities.SettingsActivity;
 import com.example.ui_test.activities.WhatsNew;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.review.model.ReviewErrorCode;
 import com.google.android.play.core.tasks.Task;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
-import com.mapbox.api.geocoding.v5.GeocodingCriteria;
 import com.mapbox.api.geocoding.v5.MapboxGeocoding;
 import com.mapbox.api.geocoding.v5.models.CarmenFeature;
 import com.mapbox.api.geocoding.v5.models.GeocodingResponse;
@@ -66,19 +59,14 @@ import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 import static com.example.ui_test.R.id.ShareMyLocation;
-import static com.example.ui_test.R.id.whatsNew;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -269,12 +257,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 break;
             }
             case R.id.settings: {
-                Toast.makeText(this, "Opening Settings", Toast.LENGTH_SHORT).show();
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
                 break;
             }
             case R.id.whatsNew: {
-                Intent intent = new Intent(this, WhatsNew.class);
-                startActivity(intent);
+                Intent intentWhatsNew = new Intent(this, WhatsNew.class);
+                startActivity(intentWhatsNew);
                 break;
             }
             case R.id.feedback: {
@@ -297,12 +286,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
 
-
-
                 break;
             }
             case R.id.contributions: {
-                Toast.makeText(this, "Showing Contributors", Toast.LENGTH_SHORT).show();
+                Intent intentContributions = new Intent(this, ContributionsActivity.class);
+                startActivity(intentContributions);
                 break;
             }
         }
