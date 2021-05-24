@@ -35,5 +35,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="developerimage">DeveloperImage</string>
     <string name="no_places_saved_yet">No Places Saved Yet</string>
+    <string name="tell_us">TELL US!</string>
+    <string name="your_feedback_is_valuable_for_us">Your Feedback is valuable for us.</string>
 
 </resources>
