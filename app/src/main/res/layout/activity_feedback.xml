@@ -16,15 +16,17 @@
 <!--        android:layout_height="300dp"-->
 <!--        />-->
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:outlineProvider="paddedBounds"
-        android:outlineSpotShadowColor="@color/colorPrimary"
+    <EditText
+        android:gravity="start"
+        android:background="@drawable/edit_text_background"
         android:id="@+id/feedbackText"
+        android:padding="10dp"
         android:layout_width="390dp"
-        android:layout_height="240dp"
+        android:layout_height="520dp"
+        android:inputType="textMultiLine"
         android:layout_marginHorizontal="21dp"
         android:layout_marginTop="120dp"
-        android:autofillHints="Your message here!"
+        android:hint="Your message here!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +40,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="299dp"
+        android:layout_marginBottom="20dp"
         android:onClick="feedback"
         android:text="Submit"
         tools:layout_editor_absoluteY="353dp" />
