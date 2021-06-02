@@ -123,14 +123,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //
         mapview = findViewById(R.id.mapView);
         final SearchView searchView = (SearchView) findViewById(R.id.search);
-        final SearchView searchView1 = (SearchView) findViewById(R.id.search1);
-        searchView1.setVisibility(View.GONE);
 
         mapview.onCreate(savedInstanceState);
         mapview.getMapAsync(this);
 
         searchView.setQueryHint("Search for Places");
-        searchView1.setQueryHint("From Your Location");
 
         recentre = (FloatingActionButton)findViewById(R.id.myLocationButton);
 
@@ -145,15 +142,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
         });
-        searchView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                searchView1.setIconified(false); //Make search box active on click
-
-            }
-
-        });
 
 
 
@@ -161,9 +150,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public boolean onQueryTextSubmit(final String s) {
-                if (searchView1 != null) {
-                    searchView1.setVisibility(View.VISIBLE);
-                }
 
                 Log.d("Searbox11",s);
 
