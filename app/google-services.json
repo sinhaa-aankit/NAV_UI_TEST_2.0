@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "502940416974",
+    "project_id": "navigationkesari",
+    "storage_bucket": "navigationkesari.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502940416974:android:eccb30d99821827a79899f",
+        "android_client_info": {
+          "package_name": "com.example.ui_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502940416974-stta1std3desm0b2j6esds8iv29hji4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1QdTB_EXO-j8HBvcvoM5GRIAX0BFHg7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502940416974-stta1std3desm0b2j6esds8iv29hji4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

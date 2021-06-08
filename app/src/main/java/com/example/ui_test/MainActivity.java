@@ -1,13 +1,5 @@
 package com.example.ui_test;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,18 +12,38 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.example.ui_test.activities.ContributionsActivity;
 import com.example.ui_test.activities.Feedback;
 import com.example.ui_test.activities.MySaves;
 import com.example.ui_test.activities.SettingsActivity;
 import com.example.ui_test.activities.WhatsNew;
+import com.google.android.gms.auth.api.identity.SignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.internal.v;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -68,7 +80,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.ui_test.R.id.ShareMyLocation;
-import static com.example.ui_test.R.id.visible;
+import static com.example.ui_test.R.id.text;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -94,13 +106,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     NavigationView navigation_view;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, "pk.kesari");
 
         setContentView(R.layout.activity_main);
+
 
         // assigning ID of the toolbar to a variable
         Toolbar toolbar = (Toolbar) findViewById(R.id.appBar);
@@ -118,6 +130,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         navigation_view = (NavigationView) findViewById(R.id.navigation_view);
         navigation_view.setNavigationItemSelectedListener(this);
+
+
+//        //after sign in
+//
+//        navigation_view.inflateHeaderView(R.layout.drawer_header);
 
 
         //
@@ -226,6 +243,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
+    @SuppressWarnings({"MissingPermission"})
+    protected void onStart() {
+        super.onStart();
+        mapview.onStart();
+
+    }
+
     void setUpDrawerLayout() {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
@@ -246,6 +270,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+
+            case R.id.sign_in_button:
+                Toast.makeText(this, "Trying Sign In", Toast.LENGTH_SHORT).show();
+                break;
 
             case R.id.mySaves: {
                 Intent intentMySaves = new Intent(this, MySaves.class);
@@ -615,12 +643,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-    }
-
-    @SuppressWarnings({"MissingPermission"})
-    protected void onStart() {
-        super.onStart();
-        mapview.onStart();
     }
 
     @Override

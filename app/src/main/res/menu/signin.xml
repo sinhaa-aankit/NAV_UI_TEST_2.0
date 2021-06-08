@@ -8,16 +8,11 @@
     android:padding="16dp">
 
     <Button
-        android:id="@+id/signInButton"
+        android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/my_button"
         android:text="Sign In"
-        android:padding="12dp"
         />
 
 
