@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.MySaves"></activity>
+        <activity android:name=".activities.SignInActivity"></activity>
+        <activity android:name=".activities.MySaves" />
         <activity android:name=".activities.ContributionsActivity" />
         <activity
             android:name=".activities.SettingsActivity"

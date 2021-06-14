@@ -1,6 +1,7 @@
 package com.example.ui_test;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -24,6 +25,7 @@ import com.example.ui_test.activities.ContributionsActivity;
 import com.example.ui_test.activities.Feedback;
 import com.example.ui_test.activities.MySaves;
 import com.example.ui_test.activities.SettingsActivity;
+import com.example.ui_test.activities.SignInActivity;
 import com.example.ui_test.activities.WhatsNew;
 import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -80,6 +82,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.ui_test.R.id.ShareMyLocation;
+import static com.example.ui_test.R.id.sign_in_button;
 import static com.example.ui_test.R.id.text;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, NavigationView.OnNavigationItemSelectedListener {
@@ -105,6 +108,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     NavigationView navigation_view;
 
+    private FirebaseAuth mAuth;
+
+    private String signOut = "Sign Out";
+    private String signIn = "Sign In";
+    private int c = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +123,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         setContentView(R.layout.activity_main);
 
+
+        mAuth = FirebaseAuth.getInstance();
+
+//        MenuItem item = findViewById(R.id.signInItem);
+//        if(c == 1){
+//            item.setTitle(signOut);
+//        }else{
+//            item.setTitle(signIn);
+//        }
 
         // assigning ID of the toolbar to a variable
         Toolbar toolbar = (Toolbar) findViewById(R.id.appBar);
@@ -241,7 +260,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Log.d("Click", "Button Clicked");
             }
         });
+
     }
+
+
 
     @SuppressWarnings({"MissingPermission"})
     protected void onStart() {
@@ -270,9 +292,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.signInItem:
 
-            case R.id.sign_in_button:
-                Toast.makeText(this, "Trying Sign In", Toast.LENGTH_SHORT).show();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser == null){
+                    Intent intentSignIN = new Intent(this, SignInActivity.class);
+                    startActivity(intentSignIN);
+                    c = 1;
+                }else{
+                    mAuth.signOut();
+                    c = 0;
+                    Toast.makeText(this, "Signed Out Successfully", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
 
             case R.id.mySaves: {

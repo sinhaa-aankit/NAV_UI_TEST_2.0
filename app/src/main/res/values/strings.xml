@@ -37,5 +37,6 @@
     <string name="no_places_saved_yet">No Places Saved Yet</string>
     <string name="tell_us">TELL US!</string>
     <string name="your_feedback_is_valuable_for_us">Your Feedback is valuable for us.</string>
+    <string name="sign_in">Sign IN</string>
 
 </resources>
